@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<title>哇，瀑布流啊</title>
+	<style type="text/css">
+	
+	   @media screen and (min-width:1550px){
+			.waterfall-container {	
+				 width:1400px;			
+			}
+		}
+		
+		@media screen and (max-width:1549px) and (min-width:1366px){
+			.waterfall-container {
+				 width:1200px;			
+			}
+		}
+		@media screen and (max-width:1365px) and (min-width:700px) {
+			.waterfall-container {
+				 width:500px;			
+			}
+		}
+		
+		@media screen and (max-width:699px) {
+			.waterfall-container {
+				 width:350px;			
+			}
+		}
+		
+		.waterfall-container{				 
+			top: 0;
+			float:left;			
+			display:inline;
+			position:relative;
+		}
+		
+		.imgZone {
+			 position:absolute;
+			 border: solid 1px #ccc;
+			 padding: 10px;
+			 width: 200px;
+			 top: 0px;
+			 left: 0px;
+			 -webkit-transition: all .7s ease-out .1s;
+			 -moz-transition: all .7s ease-out .1s;
+			 -o-transition: all .7s ease-out .1s;
+			 transition: all .7s ease-out .1s
+		}
+		img { width: 100%; }
+	
+		
+	</style>
+	</head>
+	<body >
+		<div>
+			哟，好拽的瀑布流！！！
+		</div>
+		<div style="position:relative">
+			<div style="left:0; float:left; display:inline; width:100px">
+			
+				<ul id="mediaSet">
+					<li><a href="#">1300px</a></li>
+					<li><a href="#">1100px</a></li>
+					<li><a href="#">900px</a></li>
+					<li><a href="#">600px</a></li>
+				</ul>
+			
+			</div>
+			<div class="waterfall-container">
+				  <div class="imgZone"><a href="images/temp_img02.jpg"><img src="images/temp_img02.jpg"/></a> </div>
+				  <div class="imgZone"><a href="images/temp_img03.jpg"><img src="images/temp_img03.jpg"/></a> </div>
+				  <div class="imgZone"><a href="images/temp_img04.jpg"><img src="images/temp_img04.jpg"/></a> </div>
+				  <div class="imgZone"><a href="images/temp_img09.jpg"><img src="images/temp_img09.jpg"/></a> </div>
+				  <div class="imgZone"><a href="images/temp_img05.jpg"><img src="images/temp_img05.jpg"/></a> </div>
+				  <div class="imgZone"><a href="images/temp_img06.jpg"><img src="images/temp_img06.jpg"/></a> </div>
+				  <div class="imgZone"><a href="images/temp_img07.jpg"><img src="images/temp_img07.jpg"/></a> </div>
+				  <div class="imgZone"><a href="images/temp_img08.jpg"><img src="images/temp_img08.jpg"/></a> </div>
+				  <div class="imgZone"><a href="images/temp_img09.jpg"><img src="images/temp_img09.jpg"/></a> </div>
+				  <div class="imgZone"><a href="images/temp_img10.jpg"><img src="images/temp_img10.jpg"/></a> </div>
+				  <div class="imgZone"><a href="images/temp_img11.jpg"><img src="images/temp_img11.jpg"/></a> </div>
+				  <div class="imgZone"><a href="images/temp_img12.jpg"><img src="images/temp_img12.jpg"/></a> </div>
+				  <div class="imgZone"><a href="images/temp_img13.jpg"><img src="images/temp_img13.jpg"/></a> </div>
+				  <div class="imgZone"><a href="images/temp_img14.jpg"><img src="images/temp_img14.jpg"/></a> </div>
+				  <div class="imgZone"><a href="images/temp_img15.jpg"><img src="images/temp_img15.jpg"/></a> </div>
+				  <div class="imgZone"><a href="images/temp_img15.jpg"><img src="images/temp_img15.jpg"/></a> </div>
+				  
+			</div>
+		</div>
+
+	<script type="text/javascript">
+		   			   
+		var margin = 10;
+		var boxes = document.getElementsByClassName('imgZone');
+		var wContainer = document.getElementsByClassName('waterfall-container').item(0);		
+		var boxWidth = boxes[0].offsetWidth + margin;
+		function waterfall () {
+			var columnHeight=[];
+			var waterFallWith = getWaterfallWith();
+			var n = parseInt(waterFallWith/boxWidth);
+			var columnNum = n == 0 ? 1 : n;
+			var baseLeft = wContainer.offsetLeft;
+			for (var i = 0,l=boxes.length; i <l ; i++) {
+				if (i<columnNum) {
+					columnHeight[i]=boxes[i].offsetHeight+margin;
+					boxes[i].style.top = 0;
+					boxes[i].style.left =  i*boxWidth+margin+'px';
+				} else{
+					var innsertColumn = min(columnHeight),
+						imgHeight = boxes[i].offsetHeight+ margin;
+					boxes[i].style.top = columnHeight[innsertColumn]+'px';
+					boxes[i].style.left = innsertColumn*boxWidth+margin+'px';
+					columnHeight[innsertColumn] +=imgHeight; 
+				};
+
+			};
+		};
+			
+		function getWaterfallWith(){
+			return wContainer.offsetWidth;
+		}
+		
+		function min (arr) {
+			var minColumn = 0;
+			var min = arr[minColumn];
+			for (var i = 1,len=arr.length; i < len; i++) {
+				var temp = arr[i];
+				if (temp < min) {
+					minColumn = i;
+					min = temp;
+				};
+			};
+			return minColumn;
+		}
+		window.onload = function(){waterfall();};
+		window.onresize = function(){
+			wContainer.style.width = null;
+			waterfall();
+		};
+		
+		document.getElementById("mediaSet").addEventListener("click",function(ev){
+			var link  = ev.target,
+			width = link.text;
+			wContainer.style.width = width;
+			waterfall();
+			
+		},false);
+		
+		</script>
+</body>
+</html>
