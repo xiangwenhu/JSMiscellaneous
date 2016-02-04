@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <script type="text/javascript">
+
+        //无法修改的静态变量
+        var Conf = (function () {
+            var conf = {
+                MAX_NUM: 100,
+                MIN_NUM: 1,
+                COUNT: 1000
+            };
+
+            return {
+                get: function (name) {
+                    return conf[name] ? conf[name] : null;
+                }
+            };
+
+        })();
+
+
+        //惰性单例
+        var LazySingle = (function () {
+
+            var _instance = null;
+
+            function Single() {
+                return {
+                    publicMethod: function () { console.log("LazySingle.Single.publicMethod"); },
+                    publicProperty: function () { return '1.0' }
+                };
+            }
+
+            return function () {
+                if (!_instance) {
+                    _instance = Single();
+                }
+                return _instance;
+            }
+
+        })();
+
+        var lazy1 = LazySingle();
+        var lazy2 = LazySingle();
+        console.log(lazy1 === lazy2);
+
+        //非惰性加载：
+        var LazySingleX = (function (rate) {
+
+            var rat = rate;
+
+            var LazyObject = function () {
+                this.get = function () { return rate };
+                this.set = function (value) { rate = value; };              
+            }
+
+            return new LazyObject();
+
+        })(1.0);
+
+
+        var rate = LazySingleX.get();
+        
+
+    </script>
+
+
+</body>
+</html>

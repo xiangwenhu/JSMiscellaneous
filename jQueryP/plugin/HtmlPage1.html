@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+    <style>
+        .tooltip {
+            border: solid 1px red;
+            position:relative;
+        }
+
+            .tooltip span.info {
+                /*the span will display just on :hover state*/
+                display: block;
+                position: absolute;
+                top: 0.2em;
+                left: 0.2em;
+                min-width:15em ;
+                border: 1px solid #0cf;
+                background-color: #cff;
+                color: #000;
+                text-align: left;
+                display:none;
+            }
+    </style>
+</head>
+<body>
+
+
+    <div class="tooltip">
+        <span class="info">div的事情</span>
+
+        1111
+    </div>
+
+    <pc class="tooltip">
+        <span class="info">span的事情</span>        22222
+
+    </pc>
+
+
+    <script src="../js/jquery-2.2.0.js"></script>
+    <script src="jquery-tooltip.js"></script>
+    <script>
+        $(function () {
+            $(".tooltip").tooltip();
+        })
+
+    </script>
+
+</body>
+</html>

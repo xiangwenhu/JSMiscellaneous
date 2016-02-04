@@ -1,0 +1,25 @@
+﻿div.coder {
+    -webkit-column-count: 2;
+    -webkit-column-gap: 5px;
+    -webkit-column-rule: 2px solid #ccc;
+    -moz-column-count: 2;
+    -moz-column-gap: 20px;
+    -moz-column-rule: 2px solid #ccc;
+    font-size: 12px;
+    border: 1px solid #e2e2e6;
+}
+
+
+    div.coder textarea.codeArea {       
+        text-align:left;       
+    }
+
+    div.coder span.codeHead {
+        margin: 10px;
+    }
+
+
+    div.coder span.message {
+        color: red;
+        font-size: 11px;
+    }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="../js/angular.js"></script>
+	<meta charset="UTF8"/>
+</head>
+<body>
+
+	<p>
+		如果字符串数组里面有重复的，那么需要使用track by $index来避免报错
+	</p>
+
+
+	
+
+	<h3>Names:</h3>
+	<div ng-app = "repeat-app" ng-init='names = ["jack","toms","mikes","howww","jack"];query="jack"'>
+	 	Search: <input ng-model="query">
+		<ul ng-repeat="name in names track by $index">
+			<li>{{name}}</li>
+		</ul> 
+
+		<div ng-controller="MyController">
+		     Your name:
+		     <input type="text" ng-model="username">
+		     <button ng-click="sayHello()">打招呼</button>
+		     <hr />
+		     {{greeting}}
+		</div>
+		<angular-title></angular-title>
+	</div>
+
+
+
+ 
+
+
+</script>
+
+	<script type="text/javascript">
+
+		var app = angular.module('repeat-app',[]);
+		app.controller("MyController",function($scope){
+			$scope.username = "huxiangwen";
+			$scope.sayHello = function () {
+				alert($scope.username);
+			}
+
+		});
+
+		app.directive("angularTitle", function() {
+	    	return {
+	       	 	template : "<h1>angular is so good!</h1>"
+	   	    };
+		});
+
+		
+
+	</script>
+
+</body>
+</html>

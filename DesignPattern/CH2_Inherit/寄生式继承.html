@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <script type="text/javascript">
+        var book = {
+            name: "js book",
+            alikeBook  :["css book","html book"]
+        };
+
+        function inheritObject(o) {
+            function F() { };
+            F.prototype = o;
+            return new F();
+        }
+
+        function createBook(obj) {
+            var o = inheritObject(obj);
+            o.getName = function () {
+                console.log(this.name);
+            }
+            return o;
+        }
+
+        var x = createBook(book);
+        x.getName();
+
+    </script>
+</body>
+</html>

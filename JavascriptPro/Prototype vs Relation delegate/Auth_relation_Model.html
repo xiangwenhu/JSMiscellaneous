@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div>
+        User Name:  <input id="login_username" type="text" /><br />
+        Password:<input id="login_password" type="password" /><br />
+        <input type="button" value="Login" id="login_button" />
+    </div>
+
+
+
+    <script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+
+        var LoginController = {
+            errors: [],
+            getUser: function () {
+                return document.getElementById("login_username").value;
+            },
+            getPassword: function () {
+                return document.getElementById("login_password").value;
+            },
+            validateEntry: function (user, pwd) {
+                user = user || this.getUser();
+                pwd = pwd || this.getPassword();
+
+                if (!(user && pwd)) {
+                    return this.failure("Please enter username & password!")
+                } else if (pwd.length < 5) {
+                    return this.failure("Passwrod must 5+ characters!");
+                }
+
+                return true;
+            },
+            showDialog: function (title, msg) {
+                alert(title + "\r\n" + msg);
+            },
+            failure: function (err) {
+                this.errors.push(err);
+                this.showDialog("Login invalid:" + err);
+            },
+            success: function (msg) {
+                this.showDialog("Success", msg);
+            }
+        }
+
+        var AuthController = Object.create(LoginController);
+
+        AuthController.errors = [];
+
+        AuthController.server = function (url, data) {
+            return $.ajax({ url: url, data: data })
+        }
+
+        AuthController.accept = function () {
+            this.success("Authenticated!")
+        }
+
+        AuthController.reject = function (err) {
+            this.failure("Auth Failed:" + err);
+        }
+
+        AuthController.checkAuth = function () {
+            var user = this.getUser();
+            var pwd = this.getPassword();
+            if (this.validateEntry(user, pwd)) {
+                this.server("/api/auth/check-auth.js", { user: user, password: pwd })
+                    .then(this.accept.bind(this))
+                    .fail(this.reject.bind(this));
+            }
+        }
+        var auth1 = Object.create(AuthController);
+        document.getElementById("login_button").onclick = function (ev) {
+            auth1.checkAuth();
+        };
+
+
+    </script>
+</body>
+</html>

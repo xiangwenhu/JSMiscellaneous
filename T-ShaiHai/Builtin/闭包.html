@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+
+
+    <script type="text/javascript">
+
+
+        function fun1() {
+
+            for (var i = 0; i <= 5; i++) {
+                setTimeout(function () {
+                    console.log(i);
+                }, i * 1000);
+            }
+        }
+
+         //fun1();  // 6个6
+
+        function fun2() {
+
+            for (var i = 0; i <= 5; i++) {
+
+                (function () {
+                    setTimeout(function () {
+                        console.log(i);
+                    }, i * 1000);
+                })();
+            }
+        }      
+
+        //fun2();// 6个6
+
+
+        function fun3() {
+
+            for (var i = 0; i <= 5; i++) {
+
+                (function () {
+                    var j = i;
+                    setTimeout(function () {
+                        console.log(j);
+                    }, j * 1000);
+                })();
+            }
+        }
+
+        //fun3();// 1,2,3,4,5,6
+
+
+        function fun4() {
+
+            for (var i = 0; i <= 5; i++) {
+
+                (function (j) {                   
+                    setTimeout(function () {
+                        console.log(j);
+                    }, j*1000);
+                })(i);
+            }
+        }
+
+        fun4();// // 1,2,3,4,5,6
+
+        
+
+    </script>
+
+</body>
+</html>

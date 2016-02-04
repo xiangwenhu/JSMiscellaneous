@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body ng-app="notePadApp" ng-controller="nodePadController">
+
+    <div>
+        <h2>
+            我的笔记本
+        </h2>
+        <p>
+            <textarea cols="40" rows="20" ng-model="message" ng-change="change($event)"></textarea>
+        </p>
+        <p>
+            <input type="button" value="保存" ng-click="save()" />
+            <input type="button" value="清除" ng-click="clear()" />
+        </p>
+        <p>
+            你还能输入<span ng-bind="left()" style="color:red"></span>个字
+        </p>
+    </div>
+
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript">
+        var notePadApp = angular.module("notePadApp", []);
+        notePadApp.controller("nodePadController", function ($scope) {
+            $scope.message = "";
+            $scope.left = function () {
+                return 100 - $scope.message.length;
+            }
+            $scope.clear = function () {
+                $scope.message = "";
+            }
+            $scope.save = function () {
+                alert("Saved!");
+                $scope.message = "";
+            }
+            $scope.change = function ($event) {
+                var control = target    ;
+            }
+
+
+        });
+
+
+    </script>
+</body>
+
+</html>

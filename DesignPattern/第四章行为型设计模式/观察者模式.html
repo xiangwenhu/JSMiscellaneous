@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+
+    <script type="text/javascript">
+
+        //观察者
+        var Observer = (function () {
+            var _messages = {};
+            return {
+                //添加
+                add: function (type, fn) {
+                    if (typeof _messages[type] == "undefined") {
+                        _messages[type] = [fn];
+                    } else {
+                        _messages[type].push(fn);
+                    }
+                },
+                //移除
+                remove: function (type, fn) {
+                    if (typeof _messages[type] != "undefined") {
+                        var i = _messages[type].length - 1;
+                        for (; i >= 0; i--) {
+                            if (_messages[type][i] === fn) {
+                                _messages[type].splice(i, 1);
+                            }
+                        }
+                    }
+                },
+                //触发
+                trigger: function (type, args) {
+                    if (typeof _messages[type] == "undefined") {
+                        return;
+                    }
+                    var events = {
+                        type: type,
+                        args: args || {}
+                    },
+                    i = 0,
+                    len = _messages[type].length;
+                    for (; i < len; i++) {
+                        _messages[type][i].call(this, events);
+                    }
+                }
+            }
+        })();
+
+
+        Observer.add("alert", aalert1)
+        Observer.add("alert", aalert2)
+        Observer.add("alert", aalert3)
+       
+        function aalert1() {
+            alert("alert1");          
+        }
+        function aalert2() {
+            alert("alert2");
+        }
+        function aalert3() {
+            alert("alert3");
+        }       
+        
+        Observer.remove("alert", aalert2);
+
+        Observer.trigger("alert");
+
+
+   
+
+    </script>
+
+</body>
+</html>

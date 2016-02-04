@@ -1,0 +1,57 @@
+﻿<html>
+<head>
+    <style>
+        body {
+            -webkit-user-select: none; /* Chrome all / Safari all */
+            -moz-user-select: none; /* Firefox all */
+            -ms-user-select: none; /* IE 10+ */
+            user-select: none; /* Likely future */
+        }
+    </style>
+</head>
+<body>
+    <table border=1 cellpadding=15 cellspacing=15 style="position:relative;left:100;top:100">
+        <tr>
+            <td>
+                <div onclick="show()" style="background:silver;cursor:hand">
+                    Click here to show.
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div onclick="show()" style="height:130px;width:130px;border:solid 1px red;overflow:auto">
+        sdas
+        dsad
+        asd
+        as
+        da
+        s
+        da
+        d
+        asdsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaa aaa
+        asdsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaa aaa
+
+        asdsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaa aaa
+
+        asdsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaa aaa
+
+        asdsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaa aaa
+
+        asdsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaa aaa
+
+    </div>
+
+
+    <img src="../images/eventxy.png" />
+    <script>
+
+
+
+
+        function show() {
+            alert("window.event.x:" + window.event.x + "window.event.y:" + window.event.y + "\nevent.clientX:" + event.clientX + "event.clientY:" + event.clientY + "\nevent.offsetX:" + event.offsetX + "event.offsetY:" + event.offsetY + "\nwindow.event.screenX:" + window.event.screenX + "window.event.screenY:" + window.event.screenY);
+        }
+    </script>
+</body>
+</html>

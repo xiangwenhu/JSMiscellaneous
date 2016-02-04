@@ -1,0 +1,49 @@
+﻿<html>
+<head>
+    <script src="../js/angular.js"></script>
+    <style>
+        .namecard {
+            border: 1px solid #000;
+            border-radius: 10px;
+            padding: 10px;
+            width: 300px;
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body ng-app="ezstuff">
+    <!--使用data属性向指令实现代码传递变量名-->
+    <ez-namecard data="window.sb"></ez-namecard>
+
+
+
+
+    <script type="text/javascript">
+        //sb变量建立在window对象上
+        var sb = {
+            name: "somebody",
+            gender: "male",
+            age: 28
+        };
+        angular.module("ezstuff", [])
+        .directive("ezNamecard", function () {
+            return {
+                restrict: "E",
+                template: "<div class='namecard'>",
+                replace: true,
+                link: function (scope, element, attrs) {
+                    //读取data属性值，获得变量名，通过eval得到其值
+                    var sb = eval(attrs.data);
+
+                    //填充DOM元素内容
+                    element.append("<div>name : " + sb.name + "</div>")
+                        .append("<div>gender : " + sb.gender + "</div>")
+                        .append("<div>age : " + sb.age + "</div>")
+                }
+            };
+        });
+
+    </script>
+
+</body>
+</html>

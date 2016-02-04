@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+
+
+    <script type="text/javascript">
+
+
+        function addNumbers() {
+            if (arguments.length == 0) {
+                return 0
+            } else if (arguments.length == 1) {
+                return arguments[0];
+            } else {
+                var result = 0;
+                for (var i = 0; i < arguments.length; i++) {
+                    result += arguments[i];
+                }
+                return result;               
+            }
+        }
+
+        console.log(addNumbers());
+        console.log(addNumbers(1));
+        console.log(addNumbers(1, 2, 3));
+        console.log(addNumbers(1, 2, 3, 4, 5));
+
+        //jquery $.extend arguments typeof
+
+    
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+
+    <script>
+
+
+
+        function printParams() {
+            for (var i = 0; i < arguments.length; i++) {
+                console.log(arguments[i]);
+            }
+        }
+
+        //一个一个的输入参数
+        printParams.call(this, 1, 2, 3);
+
+        console.log("===================");
+        printParams.apply(this, [1, 2, 3, 4])
+
+        console.log("===================");
+        //返回的是函数，需要调用执行
+        printParams.bind(this,4,5,6,7,8)(9,101000);
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>代码调试</title>
+    <!--<link href="css/style.css" rel="stylesheet" />-->
+
+    <style>
+        #btnSwitch {
+            margin: 10px 20px;
+        }
+
+        .coder {
+            background-color: #e5eecc;
+            position: relative;
+            height: auto;
+            vertical-align: top;
+            width: 100%;
+            border-top: solid #c3c3c3 1px;
+            min-width: 903px;
+            min-height: 400px;
+        }
+
+        .headerText {
+            color: #617f10;
+            font-family: verdana;
+            font-size: 90%;
+            top: 8px;
+        }
+
+        .sourceCode {
+            position: absolute;
+            height: auto;
+            left: 10px;
+            top: 5px;
+            bottom: 40px;
+            width: 48%;
+        }
+
+        .textareaCode {
+            position: absolute;
+            height: 99%;
+            width: 99%;
+            top: 30px;
+            bottom: 10px;
+            border: 1px solid #d3d3d3;
+            resize: none;
+            min-width: 400px;
+            /*min-height: 350px; */
+        }
+
+        .result {
+            position: absolute;
+            height: auto;
+            right: 10px;
+            top: 5px;
+            bottom: 40px;
+            width: 48%;
+        }
+
+        .iframeResult {
+            position: absolute;
+            background-color: #fff;
+            height: 99%;
+            top: 30px;
+            bottom: 10px;
+            width: 100%;
+            border: 1px solid #d3d3d3;
+            min-width: 400px;
+            /*min-height: 350px; */
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <input type="button" value="切换至单个" id="btnSwitch" data-status="1" />
+    </div>
+    <div>
+        <div class="coder">
+            <div class="sourceCode">
+                <span class="headerText">源代码:</span>
+                <input class="submitBTN" value="提交运行" type="button" /><br />
+                <span class="message"></span>
+                <textarea class="textareaCode" cols="100" rows="75"></textarea>
+            </div>
+            <div class="result">
+                <div class="headerText">测试结果:</div>
+                <iframe class="iframeResult"></iframe>
+            </div>
+        </div>
+        <div class="coder hidden">
+            <div class="sourceCode">
+                <span class="headerText">源代码:</span>
+                <input class="submitBTN" value="提交运行" type="button" /><br />
+                <span class="message"></span>
+                <textarea class="textareaCode" cols="100" rows="35"></textarea>
+            </div>
+            <div class="result">
+                <div class="headerText">测试结果:</div>
+                <iframe class="iframeResult"></iframe>
+            </div>
+        </div>
+    </div>
+    <!--<script src="js/CodeRunner.js"></script>-->
+
+    <script>
+        (function () {
+
+            //申明
+            var codeRunner = function () {
+
+            };
+
+            //默认设置
+            var settings = {
+                iframeSrc: "iframe.html"
+            };
+
+            //初始化
+            codeRunner.initialize = function (set) {
+                for (var p in set) {
+                    settings[p] = set[p];
+                }
+                return codeRunner;
+            }
+
+            //生成iframe和注册事件
+            codeRunner.build = function () {
+                var coders = document.getElementsByClassName("coder");
+
+                for (var i = 0; i < coders.length; i++) {
+
+                    //闭包
+                    (function (j) {
+                        var control = coders[j];
+                        setCoder(control);
+                        control.getElementsByClassName("submitBTN").item(0).addEventListener("click", function (ev) {
+                            setCoder(control);
+                            var btn = this;
+                            var code = control.getElementsByClassName("textareaCode").item(0).value,
+                              iframe = btn.parentNode.parentNode.getElementsByTagName("iframe").item(0),
+                              resultDiv = iframe.parentNode;
+
+                            //删除旧的iframe
+                            iframe.remove();
+
+                            //创建新的iframe
+                            var iff = createIframe();
+                            resultDiv.appendChild(iff);
+
+                            var ifrw = (iff.contentWindow) ? iff.contentWindow : (iff.contentDocument.document) ? iff.contentDocument.document : iff.contentDocument;
+
+                            ifrw.document.open();
+                            ifrw.document.write(code);
+                            ifrw.document.close();
+                        })
+                    })(i);
+
+                    //参考：http://www.w3schools.com/html/tryit.asp?filename=tryhtml_form_submit
+                    //function submitTryit() {
+                    //    var text = document.getElementById("textareaCode").value;
+                    //    var ifr = document.createElement("iframe");
+                    //    ifr.setAttribute("frameborder", "0");
+                    //    ifr.setAttribute("id", "iframeResult");
+                    //    document.getElementById("iframewrapper").innerHTML = "";
+                    //    document.getElementById("iframewrapper").appendChild(ifr);
+                    //    var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
+                    //    ifrw.document.open();
+                    //    ifrw.document.write(text);
+                    //    ifrw.document.close();
+                    //}
+
+
+                }
+            }
+
+            codeRunner.adjust = function () {
+                var coders = document.getElementsByClassName("coder");
+
+                for (var i = 0; i < coders.length; i++) {
+                    //闭包
+                    (function (j) {
+                        var control = coders[j];
+                        setCoder(control);
+                    })(i);
+                }
+            }
+
+
+            function setCoder(control) {
+
+                //如果没有添加默认的src
+
+                //高度设置
+                if (settings.minHeight) {
+                    control.style.cssText = "min-height:" + settings.minHeight + "px";
+                }
+            }
+
+            function createIframe() {
+                var ifr = document.createElement("iframe");
+                ifr.className = "iframeResult";
+                return ifr;
+            }
+
+
+
+            //注册codeRunner
+            window.codeRunner = codeRunner;
+
+        })()
+
+
+    </script>
+    <script>
+
+        //初始化CodeRunner
+        codeRunner.initialize({ minHeight: 680 }).build();
+
+        function createXmlHttpRequest() {
+            if (window.ActiveXObject) { //如果是IE浏览器
+                return new ActiveXObject("Microsoft.XMLHTTP");
+            } else if (window.XMLHttpRequest) { //非IE浏览器
+                return new XMLHttpRequest();
+            }
+        }
+
+
+
+        (function loadFileContent() {
+
+            var loc = document.location;
+            if (!loc.search) {
+                return;
+            }
+            var fileName = getQueryStringByName("f");
+            if (!fileName) {
+                return;
+            }
+
+            var url = fileName + "?t=" + new Date().getTime();
+
+            //1.创建XMLHttpRequest组建
+            xmlHttpRequest = createXmlHttpRequest();
+
+            //2.设置回调函数
+            xmlHttpRequest.onreadystatechange = renderContent;
+
+            //3.初始化XMLHttpRequest组建
+            xmlHttpRequest.open("GET", url, true);
+
+            //4.发送请求
+            xmlHttpRequest.send(null);
+        })();
+
+
+
+        function renderContent() {
+            if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) {
+                var resText = xmlHttpRequest.responseText,
+                    coder = document.getElementsByClassName("coder").item(0),
+                    textArea = coder.getElementsByTagName("textarea").item(0),
+                    btnSub = coder.getElementsByClassName("submitBTN").item(0);
+
+                textArea.textContent = resText;
+                trigger(btnSub, "click");
+            }
+        }
+
+        function getQueryStringByName(name) {
+            var result = location.search.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i"));
+            if (result == null || result.length < 1) {
+                return "";
+            }
+            return result[1];
+        }
+
+        function trigger(element, eventName) {
+            if (/msie/i.test(navigator.userAgent)) //IE
+            {
+                el.fireEvent("on" + eventName);
+            } else {
+                var e = document.createEvent('MouseEvent');
+                e.initEvent(eventName, false, false);
+                element.dispatchEvent(e);
+            }
+        }
+
+
+    </script>
+
+
+</body>
+</html>

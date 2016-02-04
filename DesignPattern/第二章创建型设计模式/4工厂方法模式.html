@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+
+    <div id="container">
+
+    </div>
+
+    <script type="text/javascript">
+
+
+        //通过对产品类的抽象使其创建业务主要负责创建多产品类别的实例
+
+        var Factory = function (type, content) {
+            //安全创建模式
+            if (this instanceof Factory) {
+                var s = new this[type](content);
+                return s;
+            } else {
+                return new Factory(type, content);
+            }
+        }
+
+        Factory.prototype = {
+            Java: function (content) {
+                this.content = content;
+                (function (content) {
+                    var div = document.createElement("div");
+                    div.innerHTML = content;
+                    div.style.border = "1px solid blue";
+                    document.getElementById("container").appendChild(div);
+
+                })(content);
+            },
+            JavaScript: function (content) {
+                this.content = content;
+                (function (content) {
+                    var div = document.createElement("div");
+                    div.innerHTML = content;
+                    div.style.border = "1px solid green";
+                    document.getElementById("container").appendChild(div);
+
+                })(content);
+            },
+            UI: function (content) {
+                this.content = content;
+                (function (content) {
+                    var div = document.createElement("div");
+                    div.innerHTML = content;
+                    div.style.border = "1px solid red";
+                    document.getElementById("container").appendChild(div);
+
+                })(content);
+            }
+        };
+
+
+        var data = [
+            { type: "JavaScript", content: "Javascript哪家强" },
+            { type: "Java", content: "Java哪家强" },
+            { type: "PHP", content: "PHP哪家强" },
+            { type: "UI", content: "UI哪家强" },
+            { type: "UI", content: "UI哪家强" }
+        ];
+
+        for (var i = 0; i < data.length; i++) {
+            Factory(data[i].type, data[i].content);
+        }
+
+    </script>
+
+
+</body>
+</html>

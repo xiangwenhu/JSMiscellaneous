@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+
+    <script type="text/javascript">
+
+        function Person(name, sex) {
+            this.name = name;
+            this.sex = sex;
+        }
+        // 定义Person的原型，原型中的属性可以被自定义对象引用
+        Person.prototype = {
+            getName: function() {
+                return this.name;
+            },
+            getSex: function() {
+                return this.sex;
+            }
+        }
+
+        function Employee(name, sex, employeeID) {
+            //call 修改this，
+            Person.call(this, name, sex);
+            this.employeeID = employeeID;
+        }
+      
+
+        // Object.create
+        Employee.prototype =  Object.create(Person.prototype);
+
+        Employee.prototype.getEmployeeID = function() {
+            return this.employeeID;
+        };
+
+
+
+
+        var xw = new Employee("xiangwen", "male", "9527");
+        console.log(xw.getName());
+        console.log(xw.getSex());
+        console.log(xw.getEmployeeID());
+
+
+    </script>
+
+</body>
+</html>

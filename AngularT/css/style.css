@@ -1,0 +1,68 @@
+﻿#btnSwitch {
+    margin:10px 20px
+}
+
+.coder {
+    background-color: #e5eecc;
+    position: relative;
+    height: auto;
+    vertical-align:top;   
+    width: 100%;
+    border-top: solid #c3c3c3 1px;
+    min-width: 903px;
+    min-height: 400px;
+}
+
+.headerText {
+    color: #617f10;   
+    font-family: verdana;
+    font-size: 90%;
+    top: 8px;
+}
+
+.sourceCode {
+    position: absolute;
+    height: auto;
+    left: 10px;
+    top: 5px;
+    bottom: 40px;
+    width: 48%;
+}
+
+.textareaCode {
+    position: absolute;
+    height: 99%;
+    width: 99%;
+    top: 30px;
+    bottom: 10px;
+    border: 1px solid #d3d3d3;
+    resize: none;
+    min-width: 400px;
+    /*min-height: 350px; */
+}
+
+.result {
+    position: absolute;
+    height: auto;
+    right: 10px;
+    top: 5px;
+    bottom: 40px;
+    width: 48%;
+}
+
+.iframeResult {
+    position: absolute;
+    background-color: #fff;
+    height: 99%;
+    top: 30px;
+    bottom: 10px;
+    width: 100%;
+    border: 1px solid #d3d3d3;
+    min-width: 400px;
+    /*min-height: 350px; */
+}
+
+.hidden {
+    display:none;
+}
+

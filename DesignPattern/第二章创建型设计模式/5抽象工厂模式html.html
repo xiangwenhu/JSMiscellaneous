@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+
+    <script type="text/javascript">
+        //通过对类的产品抽象使其业务用于对产品类chu的创建，而不负责某一类产品的实例。
+
+        var Car = function () { };
+        Car.prototype = {
+            getPrice: function () {
+                return new Error("抽象方法不能调用")
+            },
+            getSpeed: function () {
+                return new Error("抽象方法不能调用");
+            }
+        };
+
+        var VehicleFactory = function (subType, superType) {
+            if (typeof VehicleFactory[superType] === "function") {
+                function F() { };
+                F.prototype = new VehicleFactory[superType]();
+                subType.constructor = subType;
+                subType.prototype = new F();
+            } else {
+                throw new Error("未创建该抽象类");
+            }
+        }
+
+        VehicleFactory.Car = function () {
+            this.type = "car";
+        }
+
+        VehicleFactory.Car.prototype = {
+            getPrice: function () {
+                return new Error("抽象方法不能调用")
+            },
+            getSpeed: function () {
+                return new Error("抽象方法不能调用");
+            }
+        };
+
+
+        VehicleFactory.Bus = function () {
+            this.type = "bus";
+        }
+
+        VehicleFactory.Bus.prototype = {
+            getPrice: function () {
+                return new Error("抽象方法不能调用")
+            },
+            getSpeed: function () {
+                return new Error("抽象方法不能调用");
+            }
+        };
+
+
+        VehicleFactory.Truck = function () {
+            this.type = "truck";
+        }
+
+        VehicleFactory.Truck.prototype = {
+            getPrice: function () {
+                return new Error("抽象方法不能调用")
+            },
+            getSpeed: function () {
+                return new Error("抽象方法不能调用");
+            }
+        };
+
+        var BMW = function (price, speed) {
+            this.price = price;
+            this.speed = speed;
+        }
+        VehicleFactory(BMW, 'Car');
+        BMW.prototype.getPrice = function () {
+            return this.price;
+        }
+
+        BMW.prototype.getSpeed = function () {
+            return this.speed;
+        }
+
+
+    </script>
+</body>
+</html>

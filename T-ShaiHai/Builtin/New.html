@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+
+    <script>
+
+        function User(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+
+            this.getName = function () {
+                return this.name;
+            }
+        }
+
+        //静态方法
+        User.Message = function (message) {
+            console.log(message);            
+        }
+    
+
+        User.Message("User 静态方法");
+
+        var userInstance1 = new User("huxiangwen", 100, 1);
+        console.log(userInstance1.getName());  
+
+
+
+    </script>
+
+</body>
+</html>

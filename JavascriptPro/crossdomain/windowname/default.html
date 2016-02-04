@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript">
+        var state = 0,
+        iframe = document.createElement('iframe'),
+        loadfn = function () {
+            if (state === 1) {
+                var data = iframe.contentWindow.name;    // 读取数据
+                alert(data);    //弹出'I was there!'
+                iframe.contentWindow.close();
+                document.body.removeChild(iframe);
+            } else if (state === 0) {
+                state = 1;
+                iframe.contentWindow.location = "proxy.html";    // 设置的代理文件
+            }
+        };
+        iframe.src = 'http://localhost:8050/html/data.html';
+        iframe.onload = loadfn;
+        document.body.appendChild(iframe);
+    </script>
+</body>
+</html>

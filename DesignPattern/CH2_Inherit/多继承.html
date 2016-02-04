@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <script type="text/javascript">
+
+        // jQuery继承
+        // jQuery.extend({},source1,source2);
+        // jQuery.extend(true,{},source1,source2);
+
+        var extend = function (target, source) {
+            for (var property in source) {
+                target[property] = source[property];
+            }
+            return target;
+        }
+
+        var mix = function () {
+            var i = 1,
+                len = arguments.length,
+                target = arguments[0],
+                arg;
+            for (; i < len; i++) {
+                arg = arguments[i];
+                for (var property in source) {
+                    target[property] = source[property];
+                }
+            }
+            return target;
+        }
+
+        Object.prototype.mix = function () {
+            var i = 0,
+             len = arguments.length,
+             target = this,
+             arg;
+            for (; i < len; i++) {
+                arg = arguments[i];
+                for (var property in source) {
+                    target[property] = source[property];
+                }
+            }           
+        }
+
+    </script>
+</body>
+</html>

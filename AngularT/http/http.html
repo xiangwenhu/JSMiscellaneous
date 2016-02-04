@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+</head>
+<body>
+
+    <div ng-app="myApp" ng-controller="customersCtrl">
+        <ul>
+            <li ng-repeat="name in names">
+                {{name.Name +',' + name.Country}}
+            </li>
+        </ul>
+    </div>
+
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript">
+
+        var myApp = angular.module('myApp', []);
+
+        myApp.controller("customersCtrl", function ($scope, $http) {
+            $http.get("customers_json.txt").
+                success(function (response) {
+                    $scope.names = response.records;
+                });
+        });
+
+    </script>
+</body>
+</html>

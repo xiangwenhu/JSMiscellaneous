@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+
+
+    <script type="text/javascript">
+
+
+
+        function Fn(n) {
+
+            if (n <= 1) {
+                return 1;
+            } else {
+                return n * Fn(n - 1);
+            }
+        }
+
+
+        var data = Fn(5);
+        console.log(data);
+
+
+        function Fn2(n) {
+
+            if (n <= 1) {
+                return 1;
+            } else {
+                return n * arguments.callee(n - 1);
+            }
+
+        }
+
+        var data2 = Fn2(6);
+        console.log(data2);
+
+
+
+
+
+    </script>
+</body>
+</html>

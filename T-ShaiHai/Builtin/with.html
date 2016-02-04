@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+</head>
+<body>
+
+
+    <script>
+
+
+
+        //正常情况
+        var url_s = window.location.href;
+        var hash_s = window.location.hash;
+        var pro_s = window.location.protocol;
+
+        printOutput();
+
+
+        //with
+        with (window.location) {
+            url_s = href;
+            hash_s = hash;
+            pro_s = protocol;
+        }
+
+        printOutput();
+        //折中
+        var loc = window.location;
+        url_s = loc.href;
+        hash_s = loc.hash;
+        pro_s = loc.protocol;
+
+        printOutput();
+
+
+        function printOutput() {
+            console.log("============================");
+            console.log(url_s + ":" + hash_s + ":" + pro_s);
+        }
+
+
+        //性能测试
+        var obj = {
+            name: "xiangwen",
+            id: 100,
+            clients: ["odd", "even"],
+            minIndex: 1,
+            maxIndex: 10000,
+            reset: function () {
+                this.minIndex = 1;
+            }
+        };
+
+        //没有with
+        (function testNoWith() {
+            console.time("test");
+            var result = 0;
+            for (; obj.minIndex < obj.maxIndex; obj.minIndex++) {
+                result += obj.minIndex;
+            }
+            console.timeEnd("test");
+        })();
+
+        obj.reset();
+
+        //使用with
+        (function testWith() {
+            console.time("testWith");
+            var result = 0;
+            with (obj) {
+                for (; minIndex < maxIndex; minIndex++) {
+                    result += minIndex;
+                }
+            }
+            console.timeEnd("testWith");
+        })();
+
+
+
+    </script>
+
+
+</body>
+</html>

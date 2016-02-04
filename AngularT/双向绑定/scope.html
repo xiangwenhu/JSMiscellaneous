@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript" src="../js/angular.js"></script>
+</head>
+<body ng-app = "myapp">
+
+	<div ng-controller="controller1">
+		<span>controller1 name:</span> {{name}} <br/>
+		<span>rootScope fullname:</span>{{fullname}}
+	</div>
+
+
+	<script type="text/javascript">
+		var app = angular.module("myapp",[]);
+		app.controller("controller1",function  ($scope,$rootScope) {
+			$scope.name =  "hu";
+			$rootScope.fullname = "huxiangwen";
+		})  
+		
+		/* 需要设置 ng-app值为空，但是也不工作
+		function controller1($scope){
+
+			$scope.name = "hu";
+			$scope.fullname ="huxiangwen";
+		}  */
+
+	</script>
+
+</body>
+</html>

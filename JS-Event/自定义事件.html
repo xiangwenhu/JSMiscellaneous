@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+
+    <input type="button" id="btnBuild" value="buildControl"/><br/>
+
+    <input type="checkbox"  onchange="checkChange(this)"/>选中我<br/>
+
+    <div id="message"></div>
+
+    <script>
+
+        var messageControl = document.getElementById("message");
+
+        // Create the event.
+        var cEvent = document.createEvent('Event');
+        // Define that the event name is 'build'.
+        cEvent.initEvent('build', true, true);
+        // Listen for the event.
+
+        var elem = document.getElementById("btnBuild");
+        elem.addEventListener('build', function (ev) {
+            // ev.target matches elem
+            var textNode = document.createTextNode("Building.....");
+            messageControl.appendChild(textNode);
+        }, false); 
+   
+        
+        function checkChange(c) {
+            var cotronl = c;
+            if (cotronl.value == "on") {
+                elem.dispatchEvent(cEvent);
+            }
+        }
+    </script>
+</body>
+</html>

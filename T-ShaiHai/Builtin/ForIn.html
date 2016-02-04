@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+
+    <script>
+
+        var x
+        var mycars = new Array()
+        mycars[0] = "Saab"
+        mycars[1] = "Volvo"
+        mycars[2] = "BMW"
+
+        //不推荐遍历数组
+        mycars.p1 = "p1";
+
+        //定义可以枚举属性
+        
+        Object.defineProperty(mycars, "p1", {
+            configurable:true,
+            enumerable: true,
+            writable: false
+            //value:"",
+        }) 
+        mycars.p1 = "p4";
+
+        for (x in mycars) {
+            console.log(mycars[x])
+        }
+
+        console.log(mycars.p1);
+    </script>
+
+
+</body>
+</html>

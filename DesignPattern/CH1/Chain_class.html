@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <div>
+        User Name:<input type="text" id="login_username" /><br />
+        PassWord: <input type="password" id="login_password" /><br />
+        <input type="button" id="login_button" value="Validate" />
+    </div>
+
+    <script type="text/javascript">
+        Function.prototype.addMethod = function (name, fn) {
+            this.prototype[name] = fn;
+            return this;
+        }
+
+        var loginChecker = function () { };
+        loginChecker.addMethod("checkName", function (name) {
+            var name = name || document.getElementById("login_username").value;
+            return name.length > 5;
+        }).addMethod("checkPassword", function (password) {
+            var password = password || document.getElementById("login_password").value;
+            return password.length > 5;
+        });
+
+        var logc = new loginChecker();
+        document.getElementById("login_button").onclick = function (ev) {
+            var success = logc.checkName();
+            if (success) {
+                success = logc.checkPassword();
+                if (success) {
+                    alert("Pass validate!");
+                } else {
+                    alert("Pass word must 5+ characters!");
+                }
+            } else {
+                alert("User name must 5+ characters!");
+            }
+        }
+
+    </script>
+</body>
+</html>

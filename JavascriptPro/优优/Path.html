@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <div class="container">
+        <input type="text" style="min-width:500px" id="inputUrl" value="../a../b/c/d../e" /><br />
+        <input type="button" id="btnExecute" value="Execute" /><br />
+        <div id="divMessage">
+
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        var messageControl = document.getElementById("divMessage"),
+            inputUrlCotrol = document.getElementById("inputUrl");
+
+        document.getElementById("btnExecute").addEventListener("click", function (ev) {
+            messageControl.innerHTML = trans(inputUrlCotrol.value);
+
+        });
+
+
+        function trans(url) {
+
+            //s1
+            return url.replace(/[a-zA-Z]+\.\.\//g, "")
+
+            //s2
+            var arrUrls = [];
+            var arr = url.split('/');
+            arr.forEach(function (value, index) {               
+                if (value.indexOf("..") > -1 && value.length > 2) {                  
+                    return true;
+                }
+                arrUrls.push(value);
+            });
+            return arrUrls.join('/');
+        }
+
+
+    </script>
+
+</body>
+</html>

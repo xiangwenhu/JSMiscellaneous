@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <script>
+
+        // 构造函数
+        function Person(name) {
+            this.name = name;
+        }
+        // 定义Person的原型，原型中的属性可以被自定义对象引用
+        Person.prototype = {
+            getName: function () {
+                return this.name;
+            }
+        };
+        var zhang = new Person("ZhangSan");
+        console.log(zhang.getName());   // "ZhangSan"
+    </script>
+</body>
+</html>

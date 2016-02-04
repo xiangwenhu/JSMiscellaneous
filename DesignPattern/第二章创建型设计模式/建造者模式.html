@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+
+    <script type="text/javascript">
+        //http://www.cnblogs.com/feipeng/archive/2007/03/12/671932.html
+        //建造者模式可以将一个复杂对象的构建与其表示相分离，使得同样的构建过程可以创建不同的表示。也就是说如果我们用了建造者模式，
+        //那么用户就需要指定需要建造的类型就可以得到它们，而具体建造的过程和细节就不需要知道了。
+        //造者模式主要用于“分步骤构建一个复杂的对象”，在这其中“分步骤”是一个稳定的算法，而复杂对象的各个部分则经常变化，
+        //其优点是：建造者模式的“加工工艺”是暴露的，这样使得建造者模式更加灵活，并且建造者模式解耦了组装过程和创建具体部件，使得我们不用去关心每个部件是如何组装的。
+
+        var Human = function (param) {
+            this.skill = param && param.skill || "保密";
+            this.hobby = param && param.hobby || '保密';
+        }
+
+        Human.prototype = {
+            getSkill: function () {
+                return this.skill;
+            },
+            getHobby: function () {
+                return this.hobby;
+            }
+        };
+
+        var Named = function (name) {
+            var that = this;
+            (function (name, that) {
+                that.wholeName = name;
+                if (name.indexOf(' ') > -1) {
+                    that.firstName = name.slice(0, name.indexOf(' '));
+                    that.lastName = name.slice(name.indexOf(' '));
+                }
+            })(name, that);
+        }
+
+        var Work = function (work) {
+            var that = this;
+            (function (work, that) {
+                switch (work) {
+                    case "code":
+                        that.work = "工程师";
+                        that.workDescription = "离开代码会死";
+                        break;
+                    case "UI":
+                    case "UE":
+                        that.work = "设计师";
+                        that.workDescription = "漂亮妹子";
+                        break;
+                    case "teach":
+                        that.work = "老师";
+                        that.workDescription = "分享快乐吗？";
+                        break;
+                        default:
+                            that.work = work;
+                            that.workDescription = "不明职业";
+                }
+
+            })(work, that);
+        }
+
+        Work.prototype.changeWork = function (work) {
+            this.work = work;
+        }
+        Work.prototype.changeDescription = function (description) {
+            this.workDescription = description;
+        }
+
+        var Person = function (name, work) {
+            var p = new Human();
+
+            p.name = new Named(name);
+            
+            p.work = new Work(work);
+
+            return p;
+        }
+
+
+        var person = new Person("xiao ming", "code");
+        console.log(person.skill);
+        console.log(person.hobby);
+        console.log(person.work.work);
+        console.log(person.work.workDescription);
+        person.work.changeDescription("欢乐如码");
+        console.log(person.work.workDescription);
+
+    </script>
+</body>
+</html>

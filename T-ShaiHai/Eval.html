@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="coder">
+        <div class="codeZone">
+            <span class="codeHead">代码：</span>
+            <input type="button" class="btnExecute" value="执行" /><br />
+            <span class="message"></span>
+            <textarea class="codeArea" id="evalTestCode" cols="100" rows="20">
+
+            </textarea>
+        </div>    
+    </div>
+
+    <div class="coder">
+        <div class="codeZone">
+            <span class="codeHead">代码：</span>
+            <input type="button" class="btnExecute" value="执行" /><br />
+            <span class="message"></span>
+            <textarea class="codeArea" id="evalTestCode" cols="100" rows="20"></textarea>
+        </div>
+        <!--<div class="resultZone">
+            <iframe src="iframe.html" style="width:100%;min-height:400px" scrolling="auto"></iframe>
+        </div>-->
+    </div>
+
+ 
+
+    <script src="js/CodeRunner.js"></script>
+    <script>
+        codeRunner.initialize().Build();
+    </script>
+    
+
+</body>
+</html>

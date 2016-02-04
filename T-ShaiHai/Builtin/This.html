@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <input type="button" id="btnTest" value="Click Me" />
+
+    <script>
+
+        // 一般情况  this === window
+        //所以一般情况下，默认的function都是在window下面的
+        console.log(this === window);
+               
+
+        function person(name, age) {
+            this.name = name,
+            this.age = age;
+
+            this.getName = function () {
+                return this.name;
+            }
+        }
+
+        
+
+        var person1 = new person("xiangwen", 100);
+        var person2 = new person("helen", 1000);
+
+        var age = person1.getName.call(person2); // apply,bind
+        console.log(age);
+
+
+        // this 事件中代表 触发的控件
+        document.getElementById("btnTest").addEventListener("click", function (ev) {
+            var control = this;           
+            console.log(control.value);
+        })
+
+    </script>
+</body>
+</html>
