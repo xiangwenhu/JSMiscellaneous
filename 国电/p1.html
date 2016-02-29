@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="css/metro.css" rel="stylesheet" />   
+    <link href="css/docs.css" rel="stylesheet" />
+    <!-- <script src="js/jquery.js"></script>
+    <script src="js/metro.js"></script> 
+    <script src="js/docs.js"></script>  -->
+	<meta charset='UTF8'>
+	<style>
+	
+	#projectContainer{
+		font-size:10px;
+		width:100%;
+		margin:50px;
+		
+	}
+	
+	.asset-project {
+		font-weight: bold;
+		color: #262626;	
+		/*background-color:#f5f5d5; */
+		border-bottom: none;
+		-moz-border-radius: 1em;
+		-webkit-border-radius: 1em;
+		border-radius: 1em;
+		-moz-box-shadow: inset 0px 1px 0px 0px #eeeeee;
+		-webkit-box-shadow: inset 0px 1px 0px 0px #eeeeee;
+		box-shadow: inset 0px 1px 0px 0px #eeeeee;		
+		margin-top: 2em;
+		padding: 1.5em;
+		border: 1px solid #d3d3d3;		
+		border: 1px solid #dcdcdc;
+		/* text-shadow: 1px 1px 0px #eeeeee; */
+		
+		display:inline-block;
+		width:600px;
+		margin-right:50px;
+	}
+
+	.asset-project h3 {
+		border-bottom: 1px solid gray;
+		font-size: 1.92em;
+		font-weight: bold;
+		color: #556677;
+		margin: 0.4em 0 0.2em 0;
+		padding: 0 0 0.2em 0;
+		letter-spacing: -0.03em;
+		-webkit-margin-before: 1em;
+		-webkit-margin-after: 1em;
+		-webkit-margin-start: 0px;
+		-webkit-margin-end: 0px;
+	}
+	
+	.asset-project ul {
+		padding-left: 2em;
+		padding-right: 2em;
+		list-style-type: none;
+		text-align: left;
+		text-decoration: none;
+		border-bottom: none;
+		font-weight: normal;
+		font-style: normal;
+		border: none;
+		color: #111111;
+		-webkit-margin-before: 1em;
+		-webkit-margin-after: 1em;
+		-webkit-margin-start: 0px;
+		-webkit-margin-end: 0px;
+		-webkit-padding-start: 40px;		
+	}
+	
+	.asset-project li {
+		color: #262626;
+		font-size:1.6em;
+		list-style-type: square
+	}
+	
+	.asset-project li span.title{
+		display:inline-block;
+		width:100px;		
+	}
+	
+
+
+	
+	
+.progress {
+    height: 18px;
+    background: #ebebeb;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-radius: 10px;
+	width:180px;
+	display:inline-block;
+	margin:0 0 0 -5px;
+	padding:0;
+	
+}
+
+.progress > span {
+    position: relative;
+    float: left;
+    margin: 0 -1px;
+    min-width: 30px;
+    height: 18px;
+    line-height: 16px;
+    text-align: right;
+    background: #cccccc;
+    border: 1px solid;
+    border-color: #bfbfbf #b3b3b3 #9e9e9e;
+    border-radius: 10px;
+    background-image: -webkit-linear-gradient(top, #f0f0f0 0%, #dbdbdb 70%, #cccccc 100%);
+    background-image: -moz-linear-gradient(top, #f0f0f0 0%, #dbdbdb 70%, #cccccc 100%);
+    background-image: -o-linear-gradient(top, #f0f0f0 0%, #dbdbdb 70%, #cccccc 100%);
+    background-image: linear-gradient(to bottom, #f0f0f0 0%, #dbdbdb 70%, #cccccc 100%);
+    -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+
+.progress > span > span {   
+    font-size: 11px;
+    font-weight: bold;
+    color: #404040;
+    color: rgba(0, 0, 0, 0.7);
+    text-shadow: 0 1px rgba(255, 255, 255, 0.4);
+}
+	
+	</style>
+</head>
+<body>
+
+<!--参考：http://www.ruanyifeng.com/blog/2009/05/html_table_mastering.html 
+http://www.ithome.com/html/it/201483.htm
+-->
+	<div id="projectContainer">
+		<div class="asset-project">
+			<h3><a href ="#">财务集中管控平台项目群</a> <a href="#" style="display:block;float:right">子项列表>></a></h3>			
+			<ul>
+				<li><span class="title"/>项目进度</span>正常</li>
+				<!-- <li><span class="title">完成比例</span><progress value="47" max="100"></progress></li>  -->
+				<li> <span class="title">完成比例</span>					
+							<div class="progress">
+								<span style="width: 47%;"><span>47%</span></span>
+							</div>				
+					</li>
+				<li><span class="title">项目资源</span>25人/状态（正常）</li>
+				<li><span class="title">项目需求</span>完成（8）/总数 （15）</li>				
+				<li><span class="title">开始日期</span <abbr class="published" title="2009-05-10">2009年5月10日</abbr></li>				
+				<li><span class="title">项目状态</span> 组织设计、资金、预算、推广、全面风险...</li>
+
+			</ul>
+		</div>
+	</div>
+	
+	
+
+	
+	<script>
+		var sourceEl = document.getElementsByClassName("asset-project").item(0),
+		container = document.getElementById("projectContainer");
+		for(var i=0; i<3;i++){
+			container.appendChild(sourceEl.cloneNode(true));
+		}
+		
+	
+	</script>
+</body>
+</html>

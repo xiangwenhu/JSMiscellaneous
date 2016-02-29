@@ -1,0 +1,236 @@
+﻿body {
+
+}
+
+.page-content {
+    padding-top: 48px;
+}
+
+.color-list li {
+    display: inline-block;
+    padding: 10px;
+    width: 14.2857%;
+}
+
+.prettyprint {
+    background-color: #eeeeee;
+    border: 0 !important;
+    border-width: 1px !important;
+    border-color: #eeeeee !important;
+    border-left: 8px #555555 solid !important;
+}
+
+.prettyprint ol {
+    background-color: transparent !important;
+}
+
+.prettyprint li {background-color: white !important; list-style-type: decimal !important; padding-left: 1em; border-bottom: 1px #eee solid;}
+.prettyprint li:last-child{border-bottom: 0;}
+.prettyprint code .tag {
+    font-size: .7rem;
+}
+
+.prettyprint {
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+.demo-grid .row > .cell {
+    /*padding: 10px; */
+    background-color: #FFFFFF;
+    color: white;
+    text-align: left;
+    border: none;
+}
+
+.thumb {
+    background: white;
+    padding: 4px;
+    display: inline-block;
+    height: 2.375rem;
+    width: 2.375rem;
+    border: 1px transparent solid;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    .app-bar.fixed-top {
+        position: relative !important;
+    }
+    .page-content {
+        padding-top: 0 !important;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .page-content {
+        padding-top: 32px;
+    }
+}
+
+/* customized by xiangwen:Begin */
+#projectContainer , #projectContainer * {
+	 box-sizing: border-box;
+}
+
+.grid  table {
+	table-layout: fixed
+}
+
+.grid  table tfoot td{
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.table tbody tr.info{
+	background-color:#F7F7F7;
+}
+
+.table tbody tr.success{
+	background-color:#FFFFFF;
+}
+
+.table tbody tr.info , .table tbody tr.success
+{
+	color:black;
+}
+
+.table tbody tr.info:hover , .table tbody tr.success:hover ,.table.cell-hovered tbody td:hover
+{
+	background:rgba(28, 183, 236, 0.3);
+}
+
+#ProjectWB
+{
+	margin-top:-15px;
+	margin-bottom:-15px;
+}
+
+.ms-webpartzone-cell {
+	margin-bottom:0;
+}
+
+#contentBox{
+
+}
+
+#footer {
+	float:left;   
+    clear: both;         
+    width: 100%;
+	background-color:rgba(244, 244, 244, 1);
+	text-align:center;
+}
+#footer .footer-body {
+    background-image: none;	
+}
+
+#footer .footer-body {
+    color: #707070;
+    font-size: 12px;
+    line-height: 1.66666666666667;
+    margin: 20px 0;
+    padding: 0 10px 10px 10px;
+    min-height: 25px;
+    text-align: center;
+}
+
+
+#footer .footer-body a {
+    color: #707070;
+}
+
+
+
+footer .footer-body, #footer-logo a {
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTE0IiBoZWlnaHQ9IjI0IiB2aWV3Qm94P…h2LTguODY4YzAtMi41OTctLjk5NC0zLjkxNC0yLjk1Ny0zLjkxNCIvPjwvZz48L2c+PC9zdmc+) center bottom no-repeat;
+    background-size: 114px 24px;
+}
+
+#footer .footer-body>ul {
+    display: block;
+    font-size: 0;
+    list-style: none;
+    padding: 0;
+}
+
+#footer .footer-body>ul>li:after {
+    content: "\b7";
+    margin-left: 10px;
+    speak: none;
+}
+
+#footer .footer-body>ul:last-child {
+    content: "";
+    margin-left: 10px;
+    speak: none;
+}
+
+#footer .footer-body>ul>li:last-child:after {
+    display: none;
+}
+
+#footer .footer-body>ul:first-child, #footer .footer-body>p:first-child {
+    margin: 0;
+}
+
+footer .footer-body>ul>li {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1.66666666666667;
+    padding: 0;
+    white-space: nowrap;
+}
+
+#footer .footer-body>ul>li+li {
+    margin-left: 10px;
+}
+
+#footer-logo {
+    background: #f5f5f5;
+    position: relative;
+    bottom: -21px;
+}
+
+#contentBox{
+	margin-right:0;
+}
+
+.ms-wikicontent {
+	padding-right:0px;
+}
+
+#s4-bodyContainer{
+	padding-bottom:0px;
+}
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* The bottom margin is the negative value of the footer's height */
+    margin: 0 auto -30px;
+    overflow: visible !important;
+}
+.footer, .push {
+    /* .push must be the same height as .footer */
+    height: 30px;
+    /* Multicolumn Layout With Sticky Footer */
+    clear: both;
+}
+.footer {  
+   color: #fff;  
+   text-align: center;
+}
+body #s4-workspace {
+    margin-bottom: -30px;
+}
+
+
+#suiteLinksBox {
+	display:none;
+}
+
+/* customized by xiangwen:End */
+
