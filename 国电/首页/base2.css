@@ -1,0 +1,57 @@
+.metro{
+	width: 800px;
+	margin: auto;
+	position: relative;;
+
+}
+
+.metro ul {
+
+}
+
+.metro .s-mod-item{
+	display: block;
+    position: absolute;
+}
+
+.metro ul li{
+	list-style: none;	
+	display: inline-block;
+}
+
+.metro .s-mod-wrap{
+	position: relative;	
+}
+
+.metro .s-mod-cur{
+	position: absolute;
+	left: 0; 
+	bottom:0; 
+	background: #345678; 
+	width: 100%;		
+	-moz-opacity:75; 
+	opacity:0.75;
+	filter:alpha(opacity=75); 
+	color: #FFFFFF;
+}
+
+.metro .s-mod-cur p.title{	
+	display: inline-block;
+	text-align: center;
+	font-weight: 700;
+	margin:8px 0;
+	padding: 0;
+
+}
+
+.metro .s-mod-cur p.des{
+	display: none;
+	font-size: 12px;	
+	/*display: inline-block;; */
+	padding: 0 2px;
+	margin: 0;
+}
+
+
+
+
